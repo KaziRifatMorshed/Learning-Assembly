@@ -1,0 +1,85 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    A DW 7
+    B DW 5
+    SUM DW ?
+    rem DB ?
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS,AX
+
+    MOV AX,A
+    ADD AX,B
+    MOV SUM,AX
+
+    MOV ah,0
+    MOV BL,10
+    DIV BL
+    mov rem,ah
+
+    mov dl,al
+    add dl,48
+    mov ah,2
+    int 21h
+
+    mov dl,rem
+    add dl,48
+    mov ah,2
+    int 21h
+
+
+    MOV AX,4C00H
+    INT 21H
+
+MAIN ENDP
+
+END MAIN
+
+------------------------------------------------------------
+
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+A DW 7
+B DW 5
+SUM DW ?
+REM DW ?
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+
+    ;; ADD A AND B
+    MOV AX, A
+    ADD AX, B
+    MOV SUM, AX ;; SUM = A + B
+
+    ;; DIVIDE SUM BY 10
+    MOV AH, 0
+    MOV BL, 10
+    DIV BL  ;; AX / 10, quotient in AL, remainder in AH
+    MOV REM, AH ;; Store remainder
+
+    ;; PRINT TEN’S PLACE DIGIT
+    MOV DL, AL  ;; Quotient (leftmost digit)
+    ADD DL, 48  ;; Convert to ASCII
+    MOV AH, 2
+    INT 21H
+
+    ;; PRINT ONE’S PLACE DIGIT
+    MOV DL, REM  ;; Remainder (one’s place)
+    ADD DL, 48  ;; Convert to ASCII
+    MOV AH, 2
+    INT 21H
+
+    ;; TERMINATE PROGRAM
+    MOV AX, 4C00H
+    INT 21H
+MAIN ENDP
+END MAIN

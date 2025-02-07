@@ -9,7 +9,9 @@
 .CODE
 MAIN PROC
     MOV AX, @DATA
-    MOV DS,AX
+    MOV DS,
+    
+    /**/
     
     MOV AX,A
     ADD AX,B
