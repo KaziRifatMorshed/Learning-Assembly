@@ -1,0 +1,23 @@
+      xor cx,cx   ; cx-register is the counter, set to 0
+loop1   nop         ; Whatever you wanna do goes here, should not change cx
+        inc cx      ; Increment
+        cmp cx,3    ; Compare cx to the limit
+        jle loop1   ; Loop while less or equal
+
+
+
+  	mov cx,4    ; 4 iterations
+loop1   nop         ; Whatever you wanna do goes here, should not change cx
+        loop loop1  ; loop instruction decrements cx and jumps to label if not 0
+
+
+        mov ax,1
+loop1   nop         ; Whatever you wanna do goes here
+        cmp ax,1    ; Check wether cx is 1
+        je loop1    ; And loop if equal
+
+
+	jmp loop1   ; Jump to condition first
+cloop1  nop         ; Execute the content of the loop
+loop1   cmp ax,1    ; Check the condition
+        je cloop1   ; Jump to content of the loop if met
