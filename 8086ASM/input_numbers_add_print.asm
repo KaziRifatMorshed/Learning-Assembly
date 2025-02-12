@@ -1,0 +1,61 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+msg1 DB "Enter number 1: $"
+msg2 DB "Enter number 2: $"
+msg3 DB "SUM : $"
+num1 DB 0
+num2 DB 0
+mySum DB 0
+rem DB 0
+
+
+.CODE
+MOV AX, @DATA
+MOV DS, AX
+
+; PRINT MSG 1
+MOV DX, OFFSET msg1
+MOV AH, 09H
+INT 21H
+
+; READ INPUT NUM1
+MOV AH, 01H
+INT 21H ; GET INPUT
+SUB AL, 48 ; the input from the keyboard getS saved in the AL register
+MOV num1, AL ; SAVE VALUE IN RAM
+
+; PRINT NEW LINE
+MOV DL, 10 ; ASCII character 10 is the line feed character (LF)
+MOV AH, 02H
+INT 21H
+
+; PRINT msg2
+MOV DX, OFFSET msg2
+MOV AH, 09H
+INT 21H
+
+; READ INPUT 2
+MOV AH, 2
+INT 21H
+SUB AL, 48
+MOV num2, AL
+
+; PRINT NEW LINE again
+MOV DX, 10
+MOV AH, 09H
+INT 21H
+
+; PRINT MSG3
+MOV DX, OFFSET msg3
+MOV AH, 02H
+INT 21H
+
+; ADD TWO NUMBERS
+
+
+; PRINT NUMBERS
+
+
+END
