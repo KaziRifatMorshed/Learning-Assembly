@@ -32,7 +32,7 @@ add dl, 48
 mov ah, 2
 int 21h
 
-MOV AX,4C00H
+MOV AX, 4C00H
 INT 21H
 
 main endp

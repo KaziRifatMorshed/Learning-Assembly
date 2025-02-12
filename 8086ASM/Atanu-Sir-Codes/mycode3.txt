@@ -1,6 +1,99 @@
 .model small
 .stack 100h
-.data 
+.data
+    msg1 db "Enter number 1:$"
+    msg2 db "Enter number 2:$"
+    msg3 db "Sum is:$"
+    no1 db 0
+    no2 db 0
+    mysum dw 0  ; Changed to word (DW)
+    rem db 0
+    rem2 db 0 ; for the second digit
+
+.code
+    main proc
+        mov ax,@data
+        mov ds,ax
+
+    ;print msg 1
+        mov dx,offset msg1
+        mov ah,09h
+        int 21h
+
+    ;read input no1
+        mov ah,01h
+        int 21h
+        sub al,30h  ; Corrected: ASCII '0' is 30h
+        mov no1,al
+
+    ;print new line
+        mov dl,0dh  ; Carriage return
+        mov ah,02h
+        int 21h
+        mov dl,0ah  ; Line feed
+        mov ah,02h
+        int 21h
+
+
+    ;print msg2
+        mov dx,offset msg2
+        mov ah,09h
+        int 21h
+
+    ;read input 2
+        mov ah,01h
+        int 21h
+        sub al,30h  ; Corrected: ASCII '0' is 30h
+        mov no2,al
+
+    ;print new line
+        mov dl,0dh  ; Carriage return
+        mov ah,02h
+        int 21h
+        mov dl,0ah  ; Line feed
+        mov ah,02h
+        int 21h
+
+    ;print msg3
+        mov dx,offset msg3
+        mov ah,09h
+        int 21h
+
+    ;add two numbers
+        mov al,no1  ; Use AL for 8-bit addition
+        add al,no2
+        mov mysum, ax ; Store the 16bit result in mysum
+
+    ; Convert and print the sum (up to two digits)
+        mov ax, mysum
+        mov bx, 10      ; Divisor
+        xor dx, dx      ; Clear DX (important for division)
+        div bx
+
+        mov rem2, dl    ; Save the remainder (second digit) ?????
+        mov dl, al      ; Move the quotient (first digit) to DL
+        add dl, 30h     ; Convert to ASCII
+        mov ah, 02h
+        int 21h
+
+        mov dl, rem2    ; Move the remainder (second digit) to DL
+        add dl, 30h     ; Convert to ASCII
+        mov ah, 02h
+        int 21h
+
+
+    exit:
+        mov ax,4c00h
+        int 21h
+    main endp
+end main
+
+
+--------------------------------------------
+
+.model small
+.stack 100h
+.data
     msg1 db "Enter number 1:$"
     msg2 db "Enter number 2:$"
     msg3 db "Sum is:$"
@@ -10,12 +103,12 @@
     rem db 0
 
 
-.code 
-    mov ax,@data 
+.code
+    mov ax,@data
     mov ds,ax
 
 ;print msg 1
-    mov dx,offset msg1 
+    mov dx,offset msg1
     mov ah,09h
     int 21h
 
@@ -41,7 +134,7 @@
     sub al,48
     mov no2,al
 
-;print new line 
+;print new line
     mov dl,10
     mov ah,02h
     int 21h
@@ -65,6 +158,7 @@
     mov bl,10
     ;al/bl --> twodigit number/10 = decemel value
     div bl
+
     ;move reminder to rim
     mov rem,ah
     ;to print (al) we move al to dl
