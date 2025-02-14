@@ -8,8 +8,7 @@ b db 9
 c db 10
 
 .code
-main proc
-
+main proc ; WORKS
     mov ax, @data
     mov ds, ax
 
@@ -34,7 +33,7 @@ main proc
 
     printN:
     mov dl, 'N'
-    jmp print
+    ;jmp print
 
     print:
     mov ah, 2
@@ -44,4 +43,4 @@ main proc
     int 21h
 
 main endp
-end main
+end main ; DONE
