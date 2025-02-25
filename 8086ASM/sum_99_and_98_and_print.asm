@@ -15,8 +15,7 @@ mov ds, ax
 ; do sum
 mov ax, a
 add ax, b ;; now AX holds the sum
-; store sum
-mov sum, ax
+mov sum, ax ; store sum
 
 ; process first digit
 mov bl, 100 ; for sake of division

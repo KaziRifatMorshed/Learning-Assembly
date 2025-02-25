@@ -13,7 +13,7 @@ main proc
     ; jne notEqualBlock ????
 
     mov dl, 78
-    jmp stopBlock ;;;; I FORGOT THIS LINE, so DL got replaced by 'Y' wharer it was 'N' before
+    jmp stopBlock ;;;; I FORGOT THIS LINE, so DL got replaced by 'Y' whare it was 'N' before
 
     equalBlock:
     mov dl, 89

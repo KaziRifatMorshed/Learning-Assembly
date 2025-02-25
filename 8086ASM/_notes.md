@@ -3,7 +3,7 @@
 | Right                                                                                                                                                                           | Wrong                                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | ; print new line<br>    mov dl, 10 ; new line only <br>	; but cursor not first<br>    mov ah, 2<br>    int 21h<br>    mov dl, 13 ; cursor first<br>    mov ah, 2<br>    int 21h | ; print new line<br>    mov dl, 13<br>    mov ah, 2<br>    int 21h<br>    mov dl, 10<br>    mov ah, 2<br>    int 21h |
-- `lea dx, msg1` Load Effective Address
+- `lea dx, msg1` Load Effective Address (note: it is not `DL` or `DH`, it WILL BE `DX`)
 - `mov dl, offset msg1` DO NOT FORGET OFFSET
 - `mov ah, 9` DO NOT FORGET `09h`
 -  গুণ ভাগ করার আগে AH জিরো করো 
@@ -24,6 +24,34 @@ msg1 db "Enter a lower case letter: $"
 msg2 db 10, 13, "In Upper Case Letter, it is : "
 char db ?, "$"
 ```
+- Double or Single digit input:
+```asm8086
+    input_b: ; {
+        ; NOTE: result will be saved in CL
+        mov ah, 1
+        int 21h ; take first digit input
+        sub al, 48
+        mov cl, al ; save first digit in result
+
+        mov ah, 1
+        int 21h ; take second input
+        cmp al, 13 ; checking
+        je done_b
+
+        sub al, 48 ; 2nd input is number; subtract it
+        mov bh, al ; store 2nd digit in BH ; so that we may not lost it
+        mov al, cl ; move first digit to AL so that we may multiply it
+        mov bl, 10
+        mov ah, 0 ; extra safety
+        mul bl
+        mov cl, al ; move multiplication output to CL(result)
+        add cl, bh ; add second inputted (previously stored in BH) digit in CL(result)
+
+        done_b:
+        mov b, cl
+    ; }
+```
+
 
 ---
 # Perfect Codes

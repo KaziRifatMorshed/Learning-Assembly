@@ -63,7 +63,7 @@
     mov al,mysum
     ;take bl=10
     mov bl,10
-    ;al/bl --> twodigit number/10 = decemel value
+    ;al/bl --> two digit number/10 = decemel value
     div bl
     ;move reminder to rim
     mov rem,ah
