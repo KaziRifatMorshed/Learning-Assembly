@@ -1,21 +1,20 @@
 .model small
 .stack 100h
-; DONE
+; PENDING ; NEED EDIT
 .data
 a db 2
 b db 3
 sum db ?
 text1 db "input a : $"
-text2 db 10, 13, "input b : $"
-text3 db 10, 13, "SUM is = "
-t_char db ?, "$"
+text2 db "input b : $"
+text3 db "SUM is = $"
 
 .code
 main proc
     mov ax, @data
     mov ds, ax
 
-    ;promot 1
+    ; promot 1
     lea dx, text1
     mov ah, 9
     int 21h
@@ -39,12 +38,12 @@ main proc
     mov b, al
 
     ; print new line again
-    ;mov dl, 10
-    ;mov ah, 2
-    ;int 21h
-    ;mov dl, 13
-    ;mov ah, 2
-    ;int 21h
+    mov dl, 10
+    mov ah, 2
+    int 21h
+    mov dl, 13
+    mov ah, 2
+    int 21h
 
     ; sum operation
     mov al, a
@@ -52,12 +51,12 @@ main proc
     mov sum, al
 
     ; print new line
-    ;mov dl, 10
-    ;mov ah, 2
-    ;int 21h
-    ;mov dl, 13
-    ;mov ah, 2
-    ;int 21h
+    mov dl, 10
+    mov ah, 2
+    int 21h
+    mov dl, 13
+    mov ah, 2
+    int 21h
 
     ; print text3
     lea dx, text3

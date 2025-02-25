@@ -7,7 +7,7 @@
 - `mov dl, offset msg1` DO NOT FORGET OFFSET
 - `mov ah, 9` DO NOT FORGET `09h`
 -  গুণ ভাগ করার আগে AH জিরো করো 
-```asm
+```8086asm
     MOV ah,0 ; clear AH to use for reminder
     MOV BL,10
     DIV BL  
@@ -15,7 +15,15 @@
     mov result, al
 ```
 - `sub al, 20h` ; user input will be saved in AL ; subtract `20h` to get lower case
-
+- Shortcut
+```asm8086
+.data
+lf equ 10 ; Line Feed
+cr equ 13 ; A carriage return (CR) is a key on a keyboard that moves the cursor to the start of a new line
+msg1 db "Enter a lower case letter: $"
+msg2 db 10, 13, "In Upper Case Letter, it is : "
+char db ?, "$"
+```
 
 ---
 # Perfect Codes
@@ -92,6 +100,48 @@ main proc
     int 21h
 
     mov ax, 4300h
+    int 21h
+main endp
+end main
+
+```
+
+```asm8086
+.model small
+.stack 100h
+
+.data
+lf equ 10
+cr equ 13
+msg1 db "Enter a lower case letter: $"
+msg2 db 10, 13, "In Upper Case Letter, it is : "
+char db ?, "$"
+
+.code
+main proc
+    ; init DS
+    mov ax, @data
+    mov ds, ax
+
+    ; first prompt
+    lea dx, msg1
+    mov ah, 9
+    int 21h
+
+    ; user input
+    mov ah, 1
+    int 21h
+    sub al, 20h ; user input will be saved in AL ; subtract 20h to get lower case
+    ;mov bl, al ; USELESS
+    mov char, al
+
+    ; print CHAR
+    lea dx, msg2
+    mov ah, 9
+    int 21h
+
+    ; exit to DOS
+    mov ax, 4c00h
     int 21h
 main endp
 end main
