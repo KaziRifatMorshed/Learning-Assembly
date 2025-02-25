@@ -9,7 +9,7 @@ sum db 0
 subtract db ?
 text1 db "input a : $"
 text2 db 10, 13, "input b : $"
-text3 db 10, 13, "SUM is = $"
+text3 db 10, 13, "SUB is = $"
 vagfol db ?
 vagsesh db ?
 
@@ -24,22 +24,31 @@ main proc
     int 21h
 
     input_a: ; {
-    mov ah, 1
-    int 21h
-    sub al, 48
+        ; input first character
+        mov ah, 1
+        int 21h
+        sub al, 48 ; make it a value
+        mov cl, al ; store to temp storage
 
-    mov ah, 0
-    mov bl, 10
-    mul bl
-    mov cl, al
+        mov ah, 1
+        int 21h
+        cmp al, 13 ; check whether enter was pressed
+        je done_a
+        ; there is second number in AL; need to move it to safe place and multiply first one
+        sub al, 48
+        mov bh, al
 
-    mov ah, 1
-    int 21h
-    sub al, 48
-    add cl, al
+        mov ah, 0
+        mov al, cl
+        mov bl, 10
+        mul bl
+        mov cl, bh ; cl(temp) ke 10 gun kore update korbo
 
-    done_a:
-    mov a, cl
+        ;process last input
+        add cl, al
+
+        done_a:
+        mov a, cl ; final target: CL(temp) to variable_a
     ; }
 
     prompt2:
@@ -48,22 +57,28 @@ main proc
     int 21h
 
     input_b: ; {
-    mov ah, 1
-    int 21h
-    sub al, 48
+        ; NOTE: result will be saved in CL
+        mov ah, 1
+        int 21h ; take first digit input
+        sub al, 48
+        mov cl, al ; save first digit in result
 
-    mov ah, 0
-    mov bl, 10
-    mul bl
-    mov cl, al
+        mov ah, 1
+        int 21h ; take second input
+        cmp al, 13 ; checking
+        je done_b
 
-    mov ah, 1
-    int 21h
-    sub al, 48
-    add cl, al
+        sub al, 48 ; 2nd input is number; subtract it
+        mov bh, al ; store 2nd digit in BH ; so that we may not lost it
+        mov al, cl ; move first digit to AL so that we may multiply it
+        mov bl, 10
+        mov ah, 0 ; extra safety
+        mul bl
+        mov cl, al ; move multiplication output to CL(result)
+        add cl, bh ; add second inputted (previously stored in BH) digit in CL(result)
 
-    done_b:
-    mov b, cl
+        done_b:
+        mov b, cl
     ; }
 
     ; sum operation
