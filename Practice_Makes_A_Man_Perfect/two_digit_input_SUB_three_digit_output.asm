@@ -1,11 +1,12 @@
 .model small
 .stack 100h
+
 ; WORKS
-; prints single digit if the result is single digit
 .data
-a db 2
-b db 3
-sum db ?
+a db 0
+b db 0
+sum db 0
+subtract db ?
 text1 db "input a : $"
 text2 db 10, 13, "input b : $"
 text3 db 10, 13, "SUM is = $"
@@ -22,27 +23,52 @@ main proc
     mov ah, 9
     int 21h
 
-    ; input a
+    input_a: ; {
     mov ah, 1
     int 21h
     sub al, 48
-    mov a, al
 
-    ; prompt 2
+    mov ah, 0
+    mov bl, 10
+    mul bl
+    mov cl, al
+
+    mov ah, 1
+    int 21h
+    sub al, 48
+    add cl, al
+
+    done_a:
+    mov a, cl
+    ; }
+
+    prompt2:
     lea dx, text2
     mov ah, 9
     int 21h
 
-    ; input b
-    mov ax, 0 ; extra cure
+    input_b: ; {
     mov ah, 1
     int 21h
     sub al, 48
-    mov b, al
+
+    mov ah, 0
+    mov bl, 10
+    mul bl
+    mov cl, al
+
+    mov ah, 1
+    int 21h
+    sub al, 48
+    add cl, al
+
+    done_b:
+    mov b, cl
+    ; }
 
     ; sum operation
     mov al, a
-    add al, b
+    sub al, b
     mov sum, al
 
     ; print text3
