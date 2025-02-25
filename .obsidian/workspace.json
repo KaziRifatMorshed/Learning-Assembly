@@ -170,6 +170,7 @@
   },
   "active": "b4aae64ffbcd057b",
   "lastOpenFiles": [
+    "8086ASM/Practice_Makes_A_Man_Perfect/input_and_print_three_digit_number.asm",
     "8086ASM/Practice_Makes_A_Man_Perfect/division.asm",
     "8086ASM/Practice_Makes_A_Man_Perfect/a_plus_3b.asm",
     "8086ASM/Practice_Makes_A_Man_Perfect/two_digit_input_SUB_three_digit_output.asm",
@@ -179,7 +180,6 @@
     "8086ASM/Practice_Makes_A_Man_Perfect/2_multiply_2.asm",
     "8086ASM/Practice_Makes_A_Man_Perfect",
     "Practice_Makes_A_Man_Perfect/print_three_digit_number.asm",
-    "Practice_Makes_A_Man_Perfect/2_multiply_2.asm",
-    "Practice_Makes_A_Man_Perfect/two_digit_input_SUB_three_digit_output.asm"
+    "Practice_Makes_A_Man_Perfect/2_multiply_2.asm"
   ]
 }
