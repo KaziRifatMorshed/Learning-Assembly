@@ -22,4 +22,4 @@ int 21h
 
 main endp
 end main
-; OUTPUTL 01234
+; OUTPUT 01234

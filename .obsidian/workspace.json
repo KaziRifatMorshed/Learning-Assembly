@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "4e1483bf02476a52",
@@ -170,6 +170,9 @@
   },
   "active": "b4aae64ffbcd057b",
   "lastOpenFiles": [
+    "Practice_Makes_A_Man_Perfect/PERFECTION_single_digit_in_single_dig_out.asm",
+    "Practice_Makes_A_Man_Perfect/single_digit_in_single_dig_out.asm",
+    "Practice_Makes_A_Man_Perfect",
     "8086ASM/CaseConversion.asm"
   ]
 }

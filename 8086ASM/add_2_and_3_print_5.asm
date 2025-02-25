@@ -11,57 +11,57 @@ MAIN PROC
 // INIT DS
 MOV AX, @DATA
 MOV DS, AX
-/*
-Let's break down the 8086 assembly instructions `MOV AX, @DATA` and `MOV DS, AX`.
+;/*
+;Let's break down the 8086 assembly instructions `MOV AX, @DATA` and `MOV DS, AX`.
 
-**1. `MOV AX, @DATA`**
+;**1. `MOV AX, @DATA`**
 
-* **`MOV`**: This is the move instruction.  It copies data from a source to a destination.
-* **`AX`**:  `AX` is a 16-bit general-purpose register.  It's often used for arithmetic operations and, as in this case, for holding intermediate values.
-* **`@DATA`**: This is a crucial part. `@DATA` is *not* the data itself.  Instead, it's the *offset* (memory address) of the beginning of your data segment.  Think of it as a pointer to where your data lives in memory.  The assembler replaces `@DATA` with the actual numerical offset value during the assembly process.
+;* **`MOV`**: This is the move instruction.  It copies data from a source to a destination.
+;* **`AX`**:  `AX` is a 16-bit general-purpose register.  It's often used for arithmetic operations and, as in this case, for holding intermediate values.
+;* **`@DATA`**: This is a crucial part. `@DATA` is *not* the data itself.  Instead, it's the *offset* (memory address) of the beginning of your data segment.  Think of it as a pointer to where your data lives in memory.  The assembler replaces `@DATA` with the actual numerical offset value during the assembly process.
 
-So, this instruction copies the *offset* of the data segment into the `AX` register.  `AX` now holds the starting address of your data.
+;So, this instruction copies the *offset* of the data segment into the `AX` register.  `AX` now holds the starting address of your data.
 
-**2. `MOV DS, AX`**
+;**2. `MOV DS, AX`**
 
-* **`DS`**: This is the Data Segment register.  The 8086 uses segment registers to manage memory.  The `DS` register points to the start of the data segment.  All memory accesses related to data use the offset stored in the `DS` register.
-* **`AX`**:  As explained above, `AX` currently holds the offset of the data segment.
+;* **`DS`**: This is the Data Segment register.  The 8086 uses segment registers to manage memory.  The `DS` register points to the start of the data segment.  All memory accesses related to data use the offset stored in the `DS` register.
+;* **`AX`**:  As explained above, `AX` currently holds the offset of the data segment.
 
-This instruction copies the value in `AX` (which is the data segment offset) into the `DS` register.  Now, the `DS` register is properly initialized to point to the beginning of your data segment.
+;This instruction copies the value in `AX` (which is the data segment offset) into the `DS` register.  Now, the `DS` register is properly initialized to point to the beginning of your data segment.
 
-**Why is this necessary?**
+;**Why is this necessary?**
 
-The 8086 uses a segmented memory model.  This means that memory is divided into segments (code, data, stack, etc.).  To access data, the CPU needs both a segment address and an offset within that segment.
+;The 8086 uses a segmented memory model.  This means that memory is divided into segments (code, data, stack, etc.).  To access data, the CPU needs both a segment address and an offset within that segment.
 
-* The segment address is held in a segment register (like `DS`).
-* The offset is typically provided by other registers or addressing modes.
+;* The segment address is held in a segment register (like `DS`).
+;* The offset is typically provided by other registers or addressing modes.
 
-Before your program can access any data, you *must* initialize the appropriate segment registers.  In this case, you're initializing the `DS` register to point to your data segment.  Without these two instructions, the CPU wouldn't know where your data is located in memory.
+;Before your program can access any data, you *must* initialize the appropriate segment registers.  In this case, you're initializing the `DS` register to point to your data segment.  Without these two instructions, the CPU wouldn't know where your data is located in memory.
 
-**Example**
+;**Example**
 
-Let's imagine your data segment starts at memory address `1000h` (hexadecimal).
+;Let's imagine your data segment starts at memory address `1000h` (hexadecimal).
 
-1. `MOV AX, @DATA`:  The assembler would replace `@DATA` with `1000h`.  So, `AX` would contain `1000h`.
-2. `MOV DS, AX`: The value in `AX` (`1000h`) is copied into `DS`.  Now, `DS` also contains `1000h`.
+;1. `MOV AX, @DATA`:  The assembler would replace `@DATA` with `1000h`.  So, `AX` would contain `1000h`.
+;2. `MOV DS, AX`: The value in `AX` (`1000h`) is copied into `DS`.  Now, `DS` also contains `1000h`.
 
-Now, if you want to access a variable located at offset `0010h` within your data segment, the CPU would use the `DS` register (`1000h`) and add the offset (`0010h`) to calculate the physical memory address (`1000h + 0010h = 10010h`).
+;Now, if you want to access a variable located at offset `0010h` within your data segment, the CPU would use the `DS` register (`1000h`) and add the offset (`0010h`) to calculate the physical memory address (`1000h + 0010h = 10010h`).
 
-**In Summary**
+;**In Summary**
 
-These two instructions are essential for any 8086 assembly program that uses a data segment. They set up the `DS` register, allowing your program to access data correctly.  They don't move the data itself; they move the *address* of the data segment into the `DS` register.
+;These two instructions are essential for any 8086 assembly program that uses a data segment. They set up the `DS` register, allowing your program to access data correctly.  They don't move the data itself; they move the *address* of the data segment into the `DS` register.
 
-====================================================================================================
+;====================================================================================================
 
-You can't directly use `MOV DS, @DATA` in 8086 assembly because of a fundamental limitation in the architecture: you cannot directly move an immediate value (like the offset represented by `@DATA`) into a segment register (like `DS`).
+;You can't directly use `MOV DS, @DATA` in 8086 assembly because of a fundamental limitation in the architecture: you cannot directly move an immediate value (like the offset represented by `@DATA`) into a segment register (like `DS`).
 
-Here's why:
+;Here's why:
 
-1. **Segment Registers are Special:** Segment registers (CS, DS, ES, SS) hold segment addresses, not general-purpose data.  They are used by the CPU for memory segmentation.
+;1. **Segment Registers are Special:** Segment registers (CS, DS, ES, SS) hold segment addresses, not general-purpose data.  They are used by the CPU for memory segmentation.
 
-2. **Immediate Values and Segment Registers:** The 8086 architecture restricts the use of immediate values (constants or addresses known at assembly time) with segment registers.  You can't directly load a segment register with a constant value.  This is a hardware limitation.
+;2. **Immediate Values and Segment Registers:** The 8086 architecture restricts the use of immediate values (constants or addresses known at assembly time) with segment registers.  You can't directly load a segment register with a constant value.  This is a hardware limitation.
 
-3. **The Need for an Intermediary:** To work around this, you must use a general-purpose register (like AX) as an intermediary.  You first move the immediate value into the general-purpose register and then move the contents of that register into the segment register.
+;3. **The Need for an Intermediary:** To work around this, you must use a general-purpose register (like AX) as an intermediary.  You first move the immediate value into the general-purpose register and then move the contents of that register into the segment register.
 
 **Why the Restriction?**
 
@@ -69,10 +69,10 @@ The reason for this restriction is related to the way the 8086 handles memory se
 
 **The Correct Approach (as you've seen):**
 
-```assembly
-MOV AX, @DATA  ; Move the OFFSET of the data segment into AX
-MOV DS, AX      ; Move the contents of AX (the offset) into DS
-```
+;```assembly
+;MOV AX, @DATA  ; Move the OFFSET of the data segment into AX
+;MOV DS, AX      ; Move the contents of AX (the offset) into DS
+;```
 
 This two-step process is the standard and required way to initialize segment registers with the offset of a segment.  `@DATA` represents the *offset* of your data segment, and this offset must be loaded into a general-purpose register first before being transferred to `DS`.
 
