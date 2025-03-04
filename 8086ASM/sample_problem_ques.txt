@@ -1,7 +1,5 @@
+Sample Problems:
 
-
-
-2.Sample Problems:
 Problem: Write an assembly program that takes a 3-digit number as input from the user and then displays the same 3-digit number as output.
 
 Problem: Write an assembly program that takes two single-digit inputs from the user, adds them, and displays the result.
@@ -13,3 +11,24 @@ Problem: Write an assembly program that takes two multi-digit numbers as input, 
 Problem: Write an assembly program that takes two numbers as input, multiplies them, and displays the product.
 
 Problem: Perform division between two numbers
+
+
+
+
+Check Even or Odd
+
+Write an assembly program that takes an 8-bit number from the user and checks whether it is even or odd using the IF-ELSE structure. 
+
+Compare Three Numbers. Find Max and Min
+
+Grade Classification. Above 80 is A+. 75 to 79 is A.......
+
+Check if a Number is Positive or Negative
+
+Nested if-else
+
+Check if a triangle has all equal sides or two equal or none
+
+Write an assembly program to add two 16-bit numbers stored in memory and store the result in AX. If 1234H and 5678H are added, the result should be 68ACH. If there is a carry, store it in DX.
+
+Subtract 30 from 300
