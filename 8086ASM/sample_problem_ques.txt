@@ -15,6 +15,12 @@ Problem: Perform division between two numbers
 
 
 
+
+
+Lab Test 2 topics: If else and beyond 8 bits. 
+
+Sample Problems:
+
 Check Even or Odd
 
 Write an assembly program that takes an 8-bit number from the user and checks whether it is even or odd using the IF-ELSE structure. 
