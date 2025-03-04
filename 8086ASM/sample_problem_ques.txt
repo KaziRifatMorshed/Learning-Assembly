@@ -1,0 +1,15 @@
+
+
+
+2.Sample Problems:
+Problem: Write an assembly program that takes a 3-digit number as input from the user and then displays the same 3-digit number as output.
+
+Problem: Write an assembly program that takes two single-digit inputs from the user, adds them, and displays the result.
+
+Problem: Perform a + 3b where a and b are user input
+
+Problem: Write an assembly program that takes two multi-digit numbers as input, adds them, and displays the sum.
+
+Problem: Write an assembly program that takes two numbers as input, multiplies them, and displays the product.
+
+Problem: Perform division between two numbers
