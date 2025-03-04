@@ -36,7 +36,7 @@ int 21h
 
 mov ah, 1
 int 21h
-sub al, 48
+sub al, '0'
 mov ah, 0
 mov bl, 10
 mul bl
@@ -85,7 +85,7 @@ mov result, al
 
 
 print_output:
-; raugh ; 23 % 10 = 2 vagfol , 23 % 10 = 3 vagsesh
+; raugh ; 23 / 10 = 2 vagfol , 23 % 10 = 3 vagsesh
 lea dx, msg3
 mov ah, 9
 int 21h
