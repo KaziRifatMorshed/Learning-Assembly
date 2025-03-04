@@ -1,6 +1,6 @@
 .model small
 .stack 100h
-;
+; BAKI
 .data
 msg1 db "input a number : $"
 msg2 db 10, 13, "you inputted : $"
