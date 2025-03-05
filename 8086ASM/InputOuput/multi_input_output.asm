@@ -46,7 +46,10 @@ multi_input proc
         ret
 multi_input endp ; WORKING
 
-muilti_output proc
+
+
+muilti_output proc ; UN-SIGNED NUMBER
+    ; STORE value to AX
     mov ax, 4300
     mov bx, 10
     mov cx, 0

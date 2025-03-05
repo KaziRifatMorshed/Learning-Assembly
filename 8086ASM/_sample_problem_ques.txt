@@ -17,24 +17,15 @@ Problem: Perform division between two numbers
 
 
 
-Lab Test 2 topics: If else and beyond 8 bits. 
+Lab Test 2 topics: If else and beyond 8 bits.
 
 Sample Problems:
 
-Check Even or Odd
-
-Write an assembly program that takes an 8-bit number from the user and checks whether it is even or odd using the IF-ELSE structure. 
-
-Compare Three Numbers. Find Max and Min
-
-Grade Classification. Above 80 is A+. 75 to 79 is A.......
-
-Check if a Number is Positive or Negative
-
-Nested if-else
-
-Check if a triangle has all equal sides or two equal or none
-
-Write an assembly program to add two 16-bit numbers stored in memory and store the result in AX. If 1234H and 5678H are added, the result should be 68ACH. If there is a carry, store it in DX.
-
-Subtract 30 from 300
+1. Check Even or Odd: Write an assembly program that takes an 8-bit number from the user and checks whether it is even or odd using the IF-ELSE structure.
+2. Compare Three Numbers. Find Max and Min
+3. Grade Classification. Above 80 is A+. 75 to 79 is A.......
+4. Check if a Number is Positive or Negative
+5. Nested if-else
+6. Check if a triangle has all equal sides or two equal or none
+7. Write an assembly program to add two 16-bit numbers stored in memory and store the result in AX. If 1234H and 5678H are added, the result should be 68ACH. If there is a carry, store it in DX.
+8. Subtract 30 from 300

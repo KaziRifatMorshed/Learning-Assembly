@@ -1,0 +1,12 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC
+    MOV AX, 300    ; Load 300 into AX
+    SUB AX, 30     ; Subtract 30 from AX
+
+    MOV AH, 4CH
+    INT 21H
+MAIN ENDP
+END MAIN

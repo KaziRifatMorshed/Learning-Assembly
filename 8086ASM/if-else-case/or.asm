@@ -8,7 +8,7 @@ main proc
     int 21h
     mov bl, al
 
-    cmp bl, 'Y' ; not COM, it will be CMP
+    cmp bl, 'Y'
     je print_char ; JMP na, JE use korbo
     cmp bl, 'y'
     je print_char ; JMP na, JE use korbo
