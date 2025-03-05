@@ -54,16 +54,16 @@ muilti_output proc ; UN-SIGNED NUMBER
     mov bx, 10
     mov cx, 0
 
-    cmp ax, 0
-    je end_printing
+    ;cmp ax, 0
+    ;je end_printing
 
     checking:
     cmp ax, 0
     je start_printing
-    mov dx, 0
+    mov dx, 0 ; division sefty
     div bx
-    push dx
-    inc cx ; counter
+    push dx ; vagsesh push koro
+    inc cx ; counter ; how many digits
     jmp checking
 
     start_printing:
