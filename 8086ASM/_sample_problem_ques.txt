@@ -29,3 +29,13 @@ Sample Problems:
 6. Check if a triangle has all equal sides or two equal or none
 7. Write an assembly program to add two 16-bit numbers stored in memory and store the result in AX. If 1234H and 5678H are added, the result should be 68ACH. If there is a carry, store it in DX.
 8. Subtract 30 from 300
+
+
+
+
+
+1*x+2*x+……+n*x = ?
+Final results digits will be mentioned
+Add two 20 times using loop
+Find even numbers between 1 to 20
+Fibonacci
