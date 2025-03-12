@@ -6,17 +6,17 @@
 - `lea dx, msg1` Load Effective Address (note: it is not `DL` or `DH`, it WILL BE `DX`)
 - `mov dl, offset msg1` DO NOT FORGET OFFSET
 - `mov ah, 9` DO NOT FORGET `09h`
--  গুণ ভাগ করার আগে AH জিরো করো 
+-  গুণ ভাগ করার আগে AH জিরো করো
 ```8086asm
     MOV ah,0 ; clear AH to use for reminder
     MOV BL,10
-    DIV BL  
+    DIV BL
     mov rem,ah
     mov result, al
 ```
 - `sub al, 20h` ; user input will be saved in AL ; subtract `20h` to get lower case
 - Shortcut
-```asm8086
+```asm
 .data
 lf equ 10 ; Line Feed
 cr equ 13 ; A carriage return (CR) is a key on a keyboard that moves the cursor to the start of a new line
@@ -25,7 +25,7 @@ msg2 db 10, 13, "In Upper Case Letter, it is : "
 char db ?, "$"
 ```
 - Double or Single digit input:
-```asm8086
+```asm
     input_b: ; {
         ; NOTE: result will be saved in CL
         mov ah, 1
@@ -134,7 +134,7 @@ end main
 
 ```
 
-```asm8086
+```asm
 .model small
 .stack 100h
 
@@ -173,5 +173,9 @@ main proc
     int 21h
 main endp
 end main
+```
 
+```asm
+    cmp ax, 13 // DOES NOT WORK
+    cmp al, 13
 ```
