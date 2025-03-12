@@ -1,9 +1,12 @@
 .model small
 .stack 100h
-; NOT DONE
+
 .data
-nl db 10,13, "$"
-count dw 0
+    p db '+$'
+    a dw 0
+    b dw 0
+    n dw 0
+    count dw 0
 
 .code
 print_multi_digit proc
@@ -33,39 +36,36 @@ print_multi_digit endp
 main proc
     mov ax, @data
     mov ds, ax
-    ; init
-    mov cx, 1
-    mov bx, 2
 
-    check:
+    ; input n
+    mov ah, 1
+    int 21h
+    sub ax, '0'
+    mov ah, 0
+    mov n, ax
+
+    mov ax, 1
+
+    loooop:
     mov cx, count
-    cmp cx, 20
+    cmp cx, n
     je end
 
-    mov ax, cx
-    mov dx, 0 ;; necessary for division
-    div bx
-
-    cmp dx, 0
-    je even
-    jne odd
-
-    even:
-    mov ax, cx
+    add sum, ax
     call print_multi_digit
-    lea dx, nl
+
+    lea dx, p
     mov ah, 9
     int 21h
-    ;inc cx ; let odd be executed, better idea
-    ;jmp check ; let odd be executed, better idea
-    odd:
+
     mov cx, count
     inc cx
-    mov count, cx
-    jmp check
+    cmp cx, n
+    jle loooop
+
 
     end:
-    mov ah, 4ch
+    mov ah, 4Ch
     int 21h
 main endp
 end main

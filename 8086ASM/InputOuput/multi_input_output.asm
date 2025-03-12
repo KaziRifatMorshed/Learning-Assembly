@@ -47,6 +47,34 @@ multi_input proc
 multi_input endp ; WORKING
 
 
+my_print_multi_digit proc
+    ; ax has the value
+
+    ; init necessary registers
+    mov bh, 0
+    mov bx, 10
+    mov ch, 0
+    mov cx, 0
+
+    divide_them:
+    mov ah, 0
+    mov dx, 0 ;; NECESSARY FOR DIV
+    div bx
+    push dx
+    inc cx
+    cmp ax, 0
+    jne divide_them
+
+    print_them:
+    pop dx
+    add dx, '0'
+    mov ah, 2
+    int 21h
+    loop print_them
+
+    ret
+my_print_multi_digit endp
+
 
 muilti_output proc ; UN-SIGNED NUMBER
     ; STORE value to AX

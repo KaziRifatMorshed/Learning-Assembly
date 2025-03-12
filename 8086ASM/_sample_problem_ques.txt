@@ -40,3 +40,5 @@ Loops
 Find even numbers between 1 to 20
 Fibonacci
 Factorial
+Prime
+reverse 3 digits
