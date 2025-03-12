@@ -36,7 +36,7 @@ Sample Problems:
 Loops
 
 1. 1*x+2*x+……+n*x = ? Final results digits will be mentioned
-Add two 20 times using loop
+2. Add two 20 times using loop
 Find even numbers between 1 to 20
 Fibonacci
 Factorial
