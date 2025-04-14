@@ -56,8 +56,16 @@ my_print_multi_digit proc
     mov ch, 0
     mov cx, 0
 
+    ; Issue: Special handling for 0
+    cmp ax, 0 ; jodi jull number tai zero hoy
+    jne divide_them ;; input number zero na hole algo start kroe debo
+    mov dx, 0
+    push dx
+    inc cx
+    jmp print_them
+
     divide_them:
-    mov ah, 0
+    ;mov ah, 0
     mov dx, 0 ;; NECESSARY FOR DIV
     div bx
     push dx
@@ -78,12 +86,19 @@ my_print_multi_digit endp
 
 muilti_output proc ; UN-SIGNED NUMBER
     ; STORE value to AX
-    mov ax, 4300
     mov bx, 10
     mov cx, 0
 
     ;cmp ax, 0
     ;je end_printing
+
+    ; Issue: Empty stack when ax is 0
+    cmp ax, 0
+    jne checking
+    mov dx, 0
+    push dx
+    inc cx
+    jmp start_printing
 
     checking:
     cmp ax, 0
@@ -95,6 +110,8 @@ muilti_output proc ; UN-SIGNED NUMBER
     jmp checking
 
     start_printing:
+    cmp cx, 0
+    je end_printing
     pop dx
     mov ah, 2
     add dx, '0'
@@ -102,7 +119,7 @@ muilti_output proc ; UN-SIGNED NUMBER
     dec cx
     cmp cx, 0
     je end_printing
-    jg start_printing
+    jmp start_printing ; Issue: should be jmp not jg
 
     end_printing:
     ret
@@ -113,6 +130,7 @@ main proc
     mov ds, ax
 
     ;call multi_input
+    mov ax, 100
     call muilti_output
 
     mov ax, 4c00h
