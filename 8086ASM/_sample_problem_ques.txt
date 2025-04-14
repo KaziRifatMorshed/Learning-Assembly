@@ -42,3 +42,13 @@ Fibonacci
 Factorial
 Prime
 reverse 3 digits
+
+
+Array:
+Adding a number to all values of the array
+Finding even odd from the array
+Adding every alternative number of an array
+Adding two array values of similar positions and storing them in a new array
+5.Reverse an array
+Finding maximum or minimum
+Search a number
