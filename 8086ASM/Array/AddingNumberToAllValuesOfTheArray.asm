@@ -6,6 +6,8 @@
 .data
 arr dw 1,2,3,4,5,6
 len dw 6
+new_line db 10, 13, "$"   ; Changed from 'dw' to 'db' since these are character values
+; DW দিলে একটা করে স্পেস প্রিন্ট হচ্ছিলো
 
 ; DONE
 
@@ -26,13 +28,19 @@ main proc
 
     mov cx, len
     lea si, arr
+
     print_Loop:
-    mov dx, [si]
-    add dx, '0'
-    mov ah, 2h
-    int 21h
-    add si, 2        ; Added increment to move to next array element
-    loop print_Loop
+        mov dx, [si]
+        add dx, '0'      ; This will only work properly if values are 0-9
+        mov ah, 2
+        int 21h
+        add si, 2        ; Added increment to move to next array element
+
+        lea dx, new_line
+        mov ah, 9
+        int 21h
+
+        loop print_Loop
 
     ; Return to DOS
     mov ax, 4C00h

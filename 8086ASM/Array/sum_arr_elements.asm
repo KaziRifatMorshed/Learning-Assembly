@@ -3,7 +3,7 @@
 
 .data
 w dw 10,20,30,40,50,60,70,80,90,100
-
+; print total sum
 .code
 
 my_print_multi_digit proc
