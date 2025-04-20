@@ -51,4 +51,4 @@ Adding every alternative number of an array
 Adding two array values of similar positions and storing them in a new array
 5.Reverse an array
 Finding maximum or minimum
-Search a number
+7.Search a number
