@@ -15,23 +15,27 @@
 .code
 
 print_two_digit proc ; NOT WORKING
+    push ax
+    push dx
     ; store in ax
-    mov bx, 10
-    mov ah, 0
+    ;mov ah, 0
     mov dx, 0
 
+    mov bx, 10
     div bx
 
     ; dx e vag sesh
     add dx, '0'
-    mov ah, 02h
+    mov ah, 2
     int 21h
 
     mov dx, ax
     add dx, '0'
-    mov ah, 2h
+    mov ah, 2
     int 21h
 
+    pop ax
+    pop dx
     ret
 print_two_digit endp
 
