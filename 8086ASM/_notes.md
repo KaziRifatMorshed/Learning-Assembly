@@ -179,3 +179,26 @@ end main
     cmp ax, 13 // DOES NOT WORK
     cmp al, 13
 ```
+
+---
+
+## `and ax, 1` Technical effect
+
+Since 1 in binary is 00000000 00000001:
+- Only the least significant bit (LSB) of AX will be preserved
+- All other bits will be set to 0
+
+## `and ax, 1` Common uses
+
+1. **Checking if a number is odd or even**
+   - If result is 1, the original number was odd
+   - If result is 0, the original number was even
+
+2. **Isolating the LSB**
+   - Removes all other bits, keeping only the rightmost bit
+
+3. **Boolean conversion**
+   - Converts any non-zero value with LSB=1 to exactly 1
+   - Maintains 0 as 0
+
+---
