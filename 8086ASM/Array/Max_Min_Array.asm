@@ -14,7 +14,7 @@
 
 .code
 
-print_two_digit proc
+print_two_digit proc ; NOT WORKING
     ; store in ax
     mov bx, 10
     mov ah, 0
