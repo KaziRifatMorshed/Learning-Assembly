@@ -1,8 +1,6 @@
 ; Program to add two 32-bit numbers
 .model small
 .data
-    ; DRAWBACK;  num1_low dw 1234h then (4660)10 which leads inconsistancy
-    ; we needed 04660, here leading zero is important, but, has no value when it is alone
     num1_low dw 4321h    ; Lower 16 bits of first number
     num1_high dw 5678h   ; Higher 16 bits of first number
     num2_low dw 9ABCh    ; Lower 16 bits of second number
@@ -10,6 +8,7 @@
 ; asm8086 e num2_high dw 9FFFh dile overflow error ase na, but, num2_high dw A000h dile overflow error ase ?
     result_low dw ?      ; Lower 16 bits of result
     result_high dw ?     ; Higher 16 bits of result
+    ; result = 6309556797
 
 .code
 my_print_multi_digit proc
