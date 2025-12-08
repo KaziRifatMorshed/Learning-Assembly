@@ -1,0 +1,23 @@
+; noobcod3r-rtx noobcod3r-rtx ~/D/G/L/x86-64_AMD64 (main)> as first.s -o first.out
+; noobcod3r-rtx noobcod3r-rtx ~/D/G/L/x86-64_AMD64 (main)> ld first.out -o first
+; noobcod3r-rtx noobcod3r-rtx ~/D/G/L/x86-64_AMD64 (main)> 
+; noobcod3r-rtx noobcod3r-rtx ~/D/G/L/x86-64_AMD64 (main)> ./first 
+; noobcod3r-rtx noobcod3r-rtx ~/D/G/L/x86-64_AMD64 (main) [4]> echo $status
+; 4
+; noobcod3r-rtx noobcod3r-rtx ~/D/G/L/x86-64_AMD64 (main)> objdump -S first
+
+; first:     file format elf64-x86-64
+
+
+; Disassembly of section .text:
+
+; 0000000000401000 <_start>:
+;   401000:       48 c7 c0 3c 00 00 00    mov    $0x3c,%rax
+;   401007:       48 c7 c7 04 00 00 00    mov    $0x4,%rdi
+;   40100e:       0f 05                   syscall
+
+; 0000000000401010 <main>:
+;   401010:       48 c7 c0 3c 00 00 00    mov    $0x3c,%rax
+;   401017:       48 31 ff                xor    %rdi,%rdi
+;   40101a:       0f 05                   syscall
+; noobcod3r-rtx noobcod3r-rtx ~/D/G/L/x86-64_AMD64 (main)> 

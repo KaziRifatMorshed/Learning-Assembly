@@ -5,8 +5,8 @@
 .section .text
 
 _start:
-    movq $60, %rax
-    movq $3, %rdi
+    ; movq $60, %rax
+    ; movq $-4, %rdi
     syscall
     
 ;     .global main
@@ -15,3 +15,6 @@ _start:
 ;     mov     $60, %rax       # syscall: exit
 ;     xor     %rdi, %rdi      # status: 0
 ;     syscall
+
+
+
